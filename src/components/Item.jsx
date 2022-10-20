@@ -3,8 +3,12 @@ const Item = (props) => {
     <div>
       <div>名前：{props.name}</div>
       <div>
-        完了状態：{props.status}
-        <input type="checkbox" id="itemStatus" />
+        完了：
+        <input
+          type="checkbox"
+          checked={props.status}
+          onChange={props.onChange}
+        />
       </div>
     </div>
   );

@@ -10,10 +10,22 @@ const ItemList = () => {
     <div>
       <h2>ToDoリスト</h2>
       <ul>
-        {items.map((item) => {
+        {items.map((item, index) => {
+          const onChange = () => {
+            setItems((vv) => {
+              const v = [...vv];
+              v[index] = { ...v[index], status: !v[index].status };
+              return v;
+            });
+          };
           return (
             <li key={item.name}>
-              <Item name={item.name} status={item.status} />
+              <Item
+                name={item.name}
+                status={item.status}
+                index={index}
+                onChange={onChange}
+              />
             </li>
           );
         })}
@@ -33,7 +45,7 @@ const ItemList = () => {
           <input
             type="checkbox"
             id="itemStatus"
-            onChange={(e) => setItemStatus(e.target.value)}
+            onChange={(e) => setItemStatus(e.target.checked)}
             value={itemStatus}
           />
         </label>
